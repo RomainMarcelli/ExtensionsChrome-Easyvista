@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "EasyVista Scraper",
+  "version": "1.0",
+  "description": "Récupère les tickets EasyVista",
+  "permissions": [
+    "storage",
+    "alarms",
+    "downloads",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://nhood.easyvista.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://nhood.easyvista.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

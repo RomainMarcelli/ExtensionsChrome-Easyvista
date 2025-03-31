@@ -7,15 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let interval;
 
     const updateTimer = () => {
-        if (countdown > 0) {
-            countdown--;
-            let minutes = Math.floor(countdown / 60);
-            let seconds = countdown % 60;
-            timerText.innerText = `🔄 Prochaine extraction dans : ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-        } else {
-            countdown = 60; // Réinitialiser après extraction
-        }
-    };
+        chrome.runtime.sendMessage({ action: "getCountdown" }, (response) => {
+          const countdown = response.countdown;
+          const minutes = Math.floor(countdown / 60);
+          const seconds = countdown % 60;
+          timerText.innerText = `🔄 Prochaine extraction dans : ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        });
+      };      
 
     chrome.storage.local.get(["isAutoFetchActive"], (result) => {
         console.log("🔍 Vérification du statut d'auto-extraction :", result);

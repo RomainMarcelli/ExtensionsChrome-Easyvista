@@ -2,6 +2,8 @@ console.log("✅ `background.js` chargé avec succès !");
 
 let autoFetchInterval;
 let countdown = 60; // Initialisation du timer à 60 secondes
+let timerInterval = null;
+
 
 // 🔄 Met à jour le compte à rebours dans chrome.storage.local
 const updateCountdown = () => {

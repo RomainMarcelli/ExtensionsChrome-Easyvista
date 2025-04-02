@@ -1,7 +1,7 @@
 console.log("✅ `background.js` chargé avec succès !");
 
 let autoFetchInterval;
-let countdown = 3600; // 1 heure = 3600 secondes
+let countdown = 3600; // Initialisation du timer à 60 secondes
 let timerInterval = null;
 
 
@@ -10,7 +10,7 @@ const updateCountdown = () => {
     if (countdown > 0) {
         countdown--;
     } else {
-        countdown = 60; // Réinitialiser après chaque extraction
+        countdown = 3600; // ✅ Reboucle toutes les heures
         triggerExtraction(); // Déclencher immédiatement une extraction
     }
     chrome.storage.local.set({ countdown });
@@ -35,7 +35,7 @@ const stopAutoFetch = () => {
     console.log("⏹️ Désactivation de l'auto-extraction.");
     clearInterval(autoFetchInterval);
     autoFetchInterval = null;
-    chrome.storage.local.set({ isAutoFetchActive: false, countdown: 60 });
+    chrome.storage.local.set({ isAutoFetchActive: false, countdown: 3600 });
 };
 
 // 🔄 Déclenchement manuel de l'extraction
@@ -69,7 +69,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     if (message.action === "getCountdown") {
         chrome.storage.local.get(["countdown"], (result) => {
-            sendResponse({ countdown: result.countdown || 60 });
+            sendResponse({ countdown: result.countdown || 3600 });
         });
         return true;
     }

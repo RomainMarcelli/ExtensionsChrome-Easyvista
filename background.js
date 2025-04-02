@@ -1,7 +1,7 @@
 console.log("✅ `background.js` chargé avec succès !");
 
 let autoFetchInterval;
-let countdown = 60; // Initialisation du timer à 60 secondes
+let countdown = 3600; // 1 heure = 3600 secondes
 let timerInterval = null;
 
 

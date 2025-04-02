@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusText = document.getElementById("status");
     const timerText = document.getElementById("timer");
 
-    let countdown = 60;
+    let countdown = 3600; // 1 heure = 3600 secondes
     let interval;
 
     const updateTimer = () => {
